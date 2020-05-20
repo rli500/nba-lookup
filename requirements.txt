@@ -1,0 +1,2 @@
+nba_api
+google-cloud-error-reporting==0.34.0

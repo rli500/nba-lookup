@@ -1,0 +1,16 @@
+{
+  "name": "nba dummy",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "dummy",
+  "permissions": [
+    "tabs",
+     "contextMenus"
+  ],
+  "icons": {
+        "32": "icon.png"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  }
+  }
