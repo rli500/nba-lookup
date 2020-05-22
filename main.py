@@ -18,6 +18,9 @@ def main(request):
 		player = Player(code + str(0) + str(NN))
 
 	data = {
+		"name": player.name,
+		"url": "https://www.basketball-reference.com/players/" + str(lastname[0]) 
+			+ "/" + code + str(0) + str(NN) + ".html",
 		"points": player('2019-20').points,
 		"assists": player('2019-20').assists,
 		"blocks": player('2019-20').blocks

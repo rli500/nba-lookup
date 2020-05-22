@@ -5,12 +5,12 @@
   "description": "dummy",
   "permissions": [
     "tabs",
-     "contextMenus",
-     "GCP_API_URL",
-     "notifications"
+    "contextMenus",
+    "YOUR_GCP_API_URL",
+    "notifications"
   ],
   "icons": {
-        "32": "icon.png"
+    "32": "icon.png"
   },
   "background": {
     "scripts": ["background.js"]
