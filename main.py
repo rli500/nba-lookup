@@ -23,7 +23,12 @@ def main(request):
 			+ "/" + code + str(0) + str(NN) + ".html",
 		"points": player('2019-20').points,
 		"assists": player('2019-20').assists,
-		"blocks": player('2019-20').blocks
+		"blocks": player('2019-20').blocks,
+		"field_goal_percentage": player('2019-20').field_goal_percentage,
+		"free_throw_percentage": player('2019-20').free_throw_percentage,
+		"three_point_percentage": player('2019-20').three_point_percentage,
+		"net_plus_minus": player('2019-20').net_plus_minus,
+		"team": player('2019-20').team_abbreviation
 	}
 
 	return json.dumps(data)

@@ -31,6 +31,9 @@ function getStats (info, tab) {
 	  firstname = ar[0];
 	  lastname = ar[1];
 
+	  console.log(firstname);
+	  console.log(lastname);
+
 	  data = {
 	  	"firstname": firstname,
 	  	"lastname": lastname
@@ -45,7 +48,7 @@ function getStats (info, tab) {
 	  })
 	  .then((response) => response.json())
 	  .then((responseJson) => showPopUp(responseJson))
-	  .catch(error => console.log('didnt work'));
+	  .catch(error => console.error(error));
 	}
 }
 
@@ -53,28 +56,43 @@ var myID = null;
 var myurl = null;
 
 function showPopUp (data) {
-	// window.open("playerPop.html", "extension_popup", "width=300,height=400,status=no,scrollbars=yes,resizable=no");
-	chrome.notifications.create('', {
-  		title: data["name"] + "'s stats for 2019-20 season:",
-  		message: "Points: " + data["points"].toString() + "\n"
-  			   + "Assists: " + data["assists"].toString() + "\n" 
-  			   + "Blocks: " + data["blocks"].toString() + "\n",
-  		iconUrl: '/icon.png',
-  		type: 'basic',
-  		buttons: [{
-  			title: "Click here for full stats!",
-  		}]
-	}, function(id){
-		myID = id;
-		myurl = data["url"];
-	});
+	// chrome.notifications.create('', {
+ //  		title: data["name"] + "'s stats for 2019-20 season:",
+ //  		message: "Points: " + data["points"].toString() + "\n"
+ //  			   + "Assists: " + data["assists"].toString() + "\n" 
+ //  			   + "Blocks: " + data["blocks"].toString() + "\n",
+ //  		iconUrl: '/icon.png',
+ //  		type: 'basic',
+ //  		buttons: [{
+ //  			title: "Click here for full stats!",
+ //  		}]
+	// }, function(id){
+	// 	myID = id;
+	// 	myurl = data["url"];
+	// });
+
+	console.log('popup');
+	chrome.windows.create({url: "popup/playerStats.html?data=" + encodeURIComponent(JSON.stringify({
+		name: data["name"],
+		team: data["team"],
+		points: data["points"],
+		assists: data["assists"],
+		blocks: data["blocks"],
+		FGP: data["field_goal_percentage"],
+		FTP: data["free_throw_percentage"],
+		TPP: data["three_point_percentage"],
+		NPM: data["net_plus_minus"],
+		url: data["url"]
+	}))
+		, type: "popup", height: 550, width: 525});
+	console.log('popup done');
 }
 
-chrome.notifications.onButtonClicked.addListener(function(notifId, tab) {
-    if (notifId === myID) {
-    	window.open(myurl);
-    }
-});
+// chrome.notifications.onButtonClicked.addListener(function(notifId, tab) {
+//     if (notifId === myID) {
+//     	window.open(myurl);
+//     }
+// });
 
 chrome.contextMenus.create ({
 	"title": "Get quick stats",
