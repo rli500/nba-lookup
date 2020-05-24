@@ -6,7 +6,6 @@ def main(request):
 	if request_json and "firstname" in request_json and "lastname" in request_json:
 		firstname, lastname = request_json["firstname"], request_json["lastname"]
 	else:
-		#fix this, should return some kind of error for user
 		return None
 
 	code = lastname[:5] + firstname[:2]
