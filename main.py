@@ -1,4 +1,5 @@
 from sportsreference.nba.roster import Player
+import string
 import json
 
 def main(request):
@@ -11,8 +12,11 @@ def main(request):
 	code = lastname[:5] + firstname[:2]
 	NN = 1
 	player = Player(code + str(0) + str(NN))
+
+	# changes names like P.J. Tucker to pj tucker
+	tempname = player.name.lower().translate(str.maketrans('','',string.punctuation))
 	
-	while player.name.lower() != firstname + " " + lastname:
+	while tempname != firstname + " " + lastname:
 		NN += 1
 		player = Player(code + str(0) + str(NN))
 
