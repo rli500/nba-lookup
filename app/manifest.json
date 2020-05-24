@@ -1,12 +1,12 @@
 {
   "name": "NBA Quick Stats",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 2,
   "description": "Get quick stats on any NBA Player!",
   "permissions": [
     "tabs",
     "contextMenus",
-    "https://us-central1-nbanba.cloudfunctions.net/main"
+    "YOUR_GCP_API_URL"
   ],
   "icons": {
     "32": "icon.png"

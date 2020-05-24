@@ -11,7 +11,7 @@ function getNames(myString) {
     return [firstname, lastname]
 }
 
-const gcp = "https://us-central1-nbanba.cloudfunctions.net/main"
+const gcp = "YOUR_GCP_API_URL"
 
 function getStats (info, tab) {
 	return function (info, tab) {
