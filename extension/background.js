@@ -1,14 +1,3 @@
-// function search (info, tab) {
-//   return function (info, tab) {
-//     var selection = info.selectionText;
-//     var ar = getNames(selection);
-//     firstname = ar[0];
-//     lastname = ar[1];
-//     var url = "https://www.basketball-reference.com/players/" + lastname[0] + "/" + lastname.slice(0, 5) + firstname.slice(0, 2) + "01.html"
-//     chrome.tabs.create ({index: tab.index + 1, url: myurl, selected: true});
-//   }
-// }
-
 function trimAll(myString) {
 	return myString.replace(/[^a-z]/g,'');
 }
@@ -75,13 +64,14 @@ function showPopUp (data) {
 	chrome.windows.create({url: "popup/playerStats.html?data=" + encodeURIComponent(JSON.stringify({
 		name: data["name"],
 		team: data["team"],
+		position: data["position"],
 		points: data["points"],
 		assists: data["assists"],
 		blocks: data["blocks"],
-		FGP: data["field_goal_percentage"],
+		TSP: data["true_shooting_percentage"],
 		FTP: data["free_throw_percentage"],
 		TPP: data["three_point_percentage"],
-		NPM: data["net_plus_minus"],
+		UP: data["usage_percentage"],
 		url: data["url"]
 	}))
 		, type: "popup", height: 550, width: 525});
@@ -100,10 +90,3 @@ chrome.contextMenus.create ({
 	"contexts": ["selection"],
 	"onclick": getStats ()
 });
-
-// chrome.contextMenus.create ({
-//   "title": "Search for full stats",
-//   "type": "normal",
-//   "contexts": ["selection"],
-//   "onclick": search ()
-// });
